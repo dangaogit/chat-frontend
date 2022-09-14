@@ -1,9 +1,18 @@
 import { esbuild } from "./deps/deps.ts"
 
-const result = await esbuild.build({
+await Deno.run({cmd: ["bash", "-c", "rm -rf ./dist"]})
+
+/**
+ * build source ts
+ */
+await esbuild.build({
     entryPoints: ["./src/main.ts"],
     bundle: true,
     outdir: "./dist"
 })
-console.log(result)
 esbuild.stop()
+
+/**
+ * build public
+ */
+await Deno.run({cmd: ["bash", "-c", "cp -r ./public/* ./dist"]})
