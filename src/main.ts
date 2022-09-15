@@ -1,3 +1,3 @@
-import { hello } from "./lib.ts"
+import { hello } from "./lib.ts";
 
 console.log(hello);
